@@ -1,16 +1,16 @@
 
 
-use orderbook_rust::models::{Order, order::Side};
+use orderbook_rust::models::{Order,Side};
 
 fn main() {
 
 
-    let sid = Side::Buy;
+    let side = Side::Buy;
 
     let o = Order {
         id : 34,
         symbol : String::from("BTC/USDT"),
-        side : sid,
+        side ,
         price: 45.0,
         quantity : 100
     };

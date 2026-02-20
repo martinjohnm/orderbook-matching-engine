@@ -5,3 +5,4 @@ pub mod trade;
 
 pub use order::Order;
 pub use trade::Trade;
+pub use order::Side;
