@@ -1,4 +1,4 @@
-
+<!-- 
 rust_orderbook/
 │
 ├── Cargo.toml
@@ -29,7 +29,7 @@ rust_orderbook/
 │
 └── tests/
     ├── unit_tests.rs            # Core orderbook unit tests
-    └── integration_tests.rs     # HTTP/WebSocket + engine integration tests
+    └── integration_tests.rs     # HTTP/WebSocket + engine integration tests -->
 
 
 ## Modules 
