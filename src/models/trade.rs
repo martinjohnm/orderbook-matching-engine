@@ -1,0 +1,8 @@
+
+#[derive(Clone, Debug)]
+pub struct Trade {
+    pub buy_order_id: u64,
+    pub sell_order_id: u64,
+    pub quantity: u64,
+    pub price: f64,
+}

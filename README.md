@@ -30,3 +30,15 @@ rust_orderbook/
 └── tests/
     ├── unit_tests.rs            # Core orderbook unit tests
     └── integration_tests.rs     # HTTP/WebSocket + engine integration tests
+
+
+## Modules 
+### models → Data structures (Order, Trade)
+
+### orderbook → Core matching logic, price-time priority
+
+### engine → Single-threaded event loop per market, handles incoming orders
+
+### network → Async layer: HTTP + WebSocket, receives client requests
+
+### broadcaster → Sends executed trades to clients asynchronously
