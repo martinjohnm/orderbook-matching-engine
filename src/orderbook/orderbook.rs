@@ -4,6 +4,7 @@
 
 use crate::models::{Order, Side, Trade};
 
+#[derive(Debug)]
 pub struct OrderBook {
     buy : Vec<Order>, // sorted descending by price
     sell : Vec<Order> // sorted ascending by price
