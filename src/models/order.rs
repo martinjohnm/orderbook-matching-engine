@@ -8,6 +8,6 @@ pub struct Order {
     pub id: u64,
     pub symbol: String,
     pub side: Side,
-    pub price: f64,
+    pub price: u64,
     pub quantity: u64,
 }
