@@ -89,12 +89,12 @@ impl OrderBookBtreeMap {
     }
 
     // Get best bid
-    fn _best_bid(&self) -> Option<(&u64, &VecDeque<Order>)> {
+    pub fn best_bid(&self) -> Option<(&u64, &VecDeque<Order>)> {
         self.bids.iter().rev().next() // highest bid price
     }
 
     // Get best ask
-    fn _best_ask(&self) -> Option<(&u64, &VecDeque<Order>)> {
+    pub fn best_ask(&self) -> Option<(&u64, &VecDeque<Order>)> {
         self.asks.iter().next() // lowest ask price
     }
 
