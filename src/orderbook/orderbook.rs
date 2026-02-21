@@ -14,7 +14,7 @@ impl OrderBook {
         Self { buy: vec![], sell: vec![] }
     }
 
-    pub fn add_order(&mut self, order: Order) {
+    pub fn add_order(&mut self, order: Order) -> Vec<Trade> {
         let book = match order.side {
             Side::Buy => &mut self.buy,
             Side::Sell => &mut self.sell
@@ -25,6 +25,8 @@ impl OrderBook {
         // Sort arrays 
         self.buy.sort_by(|a,b| b.price.partial_cmp(&a.price).unwrap());
         self.sell.sort_by(|a,b| a.price.partial_cmp(&b.price).unwrap());
+
+        self.match_orders()
 
     }
 
