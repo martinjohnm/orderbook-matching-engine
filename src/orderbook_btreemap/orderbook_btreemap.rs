@@ -6,8 +6,8 @@ use crate::models::{Order};
 
 #[derive(Debug)]
 pub struct OrderBookBtreeMap {
-    bids : BTreeMap<u64, VecDeque<Order>>, // descending order for bids
-    asks : BTreeMap<u64, VecDeque<Order>>  // ascending order for asks
+    pub bids : BTreeMap<u64, VecDeque<Order>>, // descending order for bids
+    pub asks : BTreeMap<u64, VecDeque<Order>>  // ascending order for asks
 }
 
 impl OrderBookBtreeMap {
