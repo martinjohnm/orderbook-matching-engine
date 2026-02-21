@@ -22,7 +22,9 @@ fn main() {
 
     let start = Instant::now();
     // add 100k orders
-    for i in 0..100_000 {
+
+    let orders = 10000;
+    for i in 0..orders {
         let order = Order {
             id: i,
             symbol: String::from("BTC/USDT"),
@@ -34,5 +36,6 @@ fn main() {
     }
     let duration = start.elapsed();
     println!("Processed 100k orders in {:?}", duration);
-    println!("TPS: {}", 100_000.0 / duration.as_secs_f64());
+    let orders_count_in_float = orders as f64;
+    println!("TPS: {}", orders_count_in_float / duration.as_secs_f64());
 }
