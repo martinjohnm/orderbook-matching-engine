@@ -5,7 +5,8 @@ use std::time::Instant;
 
 use orderbook_rust::models::{Order,Side};
 use orderbook_rust::orderbook_btreemap::OrderBookBtreeMap;
-
+use rand::rngs::SmallRng;
+use rand::{Rng, SeedableRng};
 fn main() {
 
     let mut book = OrderBookBtreeMap::new();
@@ -34,17 +35,30 @@ fn main() {
     let start = Instant::now();
     // add 100k orders
 
-    let orders = 100_0000;
+    let mut rng = SmallRng::from_entropy();
+    let orders = 500_0000;
+    
     for i in 0..orders {
-        let order = Order {
+
+        
+
+        let mut order = Order {
             id: i,
             symbol: String::from("BTC/USDT"),
             side: if i % 2 == 0 { Side::Buy } else { Side::Sell },
-            price: rand::random::<u64>() ,
+            price: rng.gen_range(1000..1010) ,
             quantity: rand::random::<u64>() % 10 + 1,
         };
 
         let is_buy = if let Side::Buy = order.side { true } else { false };
+
+        let price = if is_buy {
+            rng.gen_range(1005..1050) // Buyers willing to pay more
+        } else {
+            rng.gen_range(970..1010) // Sellers willing to take less
+        };
+
+        order.price = price;
 
         book.insert_order(order, is_buy);
     }
@@ -52,14 +66,15 @@ fn main() {
 
 
     let duration = start.elapsed();
-    println!("Processed 100k orders in {:?}", duration);
+    println!("Processed {} orders in {:?}",orders,  duration);
     let orders_count_in_float = orders as f64;
     println!("TPS: {}", orders_count_in_float / duration.as_secs_f64());
 
-    println!("best bid : {:?} best ask : {:?}", book.best_bid(), book.best_ask());
+    // println!("best bid : {:?} best ask : {:?}", book.best_bid(), book.best_ask());
 
 
-    println!("No of Bids : {}", book.bids.len());
-    println!("No of asks : {}", book.asks.len());
+    println!("No of Bids : {}", book.total_bid_count());
+    println!("No of asks : {}", book.total_ask_count());
 
 }
+

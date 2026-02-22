@@ -98,4 +98,20 @@ impl OrderBookBtreeMap {
         self.asks.iter().next() // lowest ask price
     }
 
+    pub fn total_bid_count(&self) -> usize {
+        self.bids.values().map(|orders| orders.len()).sum()
+    }
+
+    /// Returns the total number of individual SELL orders across all prices
+    pub fn total_ask_count(&self) -> usize {
+        self.asks.values().map(|orders| orders.len()).sum()
+    }
+
+    /// Returns the count of orders specifically at the BEST price
+    pub fn best_bid_order_count(&self) -> usize {
+        self.best_bid()
+            .map(|(_price, orders)| orders.len())
+            .unwrap_or(0)
+    }
+
 }
